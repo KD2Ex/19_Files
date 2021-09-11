@@ -3,7 +3,7 @@
 using namespace std;
 int main() {
     ifstream file;
-    file.open("C:\\WEB\\.vscode\\t.txt");
+    file.open("W:\\CLionProjects\\Skillbox\\19_Files\\t.txt");
     int sum = 0;
     int maxCash = 0;
     string name;
