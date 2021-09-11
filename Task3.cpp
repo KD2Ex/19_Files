@@ -4,7 +4,6 @@ using namespace std;
 int main() {
     ifstream file;
     file.open("C:\\WEB\\.vscode\\t.txt");
-    //cout << file.is_open();
     int sum = 0;
     int maxCash = 0;
     string name;
