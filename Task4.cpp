@@ -14,6 +14,5 @@ int main() {
     } else {
         cout << "n";
     }
-    //cout << buffer << " " << buffer[0] << " " << (char)-119;
-
+    file.close();
 }
