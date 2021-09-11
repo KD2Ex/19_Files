@@ -28,4 +28,5 @@ int main() {
     }
     cout << name << " " << surname << " " << maxCash << " " << date << endl;
     cout << sum;
+    file.close();
 }
