@@ -24,7 +24,6 @@ int main() {
             surname = bufSurname;
             date = bufDate;
         }
-        //cout << name << " " << surname << " " << cash << " " << date << endl;
     }
     cout << name << " " << surname << " " << maxCash << " " << date << endl;
     cout << sum;
