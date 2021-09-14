@@ -3,7 +3,10 @@
 using namespace std;
 int main() {
     ifstream file;
-    file.open("W:\\CLionProjects\\Skillbox\\19_Files\\t.txt");
+    string path;
+    cout << "Enter a path to the file:";
+    cin >> path;
+    file.open(path);
     int sum = 0;
     int maxCash = 0;
     string name;
@@ -12,7 +15,7 @@ int main() {
     string bufName;
     string bufSurname;
     string bufDate;
-    
+
     int cash;
     while (!file.eof()) {
         file >> bufName >> bufSurname >> cash >> bufDate;
