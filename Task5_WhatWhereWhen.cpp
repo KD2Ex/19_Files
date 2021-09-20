@@ -1,10 +1,10 @@
 #include <iostream>
 #include <fstream>
-#include <windows.h>
 using namespace std;
 
-void printFileContent(ifstream &file) {
+string readAllText(ifstream &file) {
     char buffer[6];
+    string str = "";
     while (!file.eof()) {
         file.read(buffer, sizeof(buffer) - 1);
         buffer[5] = 0;
@@ -13,16 +13,22 @@ void printFileContent(ifstream &file) {
                 buffer[i] = 0;
             }
         }
-        cout << buffer;
+        str += buffer;
     }
+    file.close();
+    return str;
+}
+
+void printFileContent(ifstream &file) {
+
 }
 
 bool answer(ifstream &answer) {
     string rightAnswer;
     string playerAnswer;
-    answer >> rightAnswer;
-    cin >> playerAnswer;
-
+    cin.get();
+    getline(cin, playerAnswer);
+    rightAnswer =  readAllText(answer);
     if (playerAnswer == rightAnswer) {
         return true;
     } else {
@@ -31,8 +37,8 @@ bool answer(ifstream &answer) {
 }
 
 int main() {
-    ifstream questions[13];
-    ifstream answers[13];
+    ifstream questions;
+    ifstream answers;
     int offset;
     int position = 1;
     int expertsScore = 0;
@@ -58,7 +64,9 @@ int main() {
         }
 
         while (sectors[position - 1] != true) {
-            ++position;
+            if (++position > 13) {
+                position = 1;
+            }
         }
 
         questionsPath = "W:\\CLionProjects\\Skillbox\\19_Files\\TheGame\\Questions\\"
@@ -66,22 +74,26 @@ int main() {
         answersPath = "W:\\CLionProjects\\Skillbox\\19_Files\\TheGame\\Answers\\"
                 + to_string(position) + ".txt";
 
-        questions[position - 1].open(questionsPath);
-        answers[position - 1].open(answersPath);
+        questions.open(questionsPath);
+        answers.open(answersPath);
 
-        printFileContent(questions[position]);
+        cout << readAllText(questions) << endl;
 
         cout << "Enter your answer:\n";
 
-        if (answer(answers[position])) {
+        if (answer(answers)) {
             ++expertsScore;
         } else {
             ++viewersScore;
         }
         cout << "Current state is " << expertsScore << ":" << viewersScore << endl;
         sectors[position - 1] = false;
-        questions[position].close();
-        answers[position].close();
     }
-}
 
+    if (expertsScore == 6) {
+        cout << "Experts won!";
+    } else {
+        cout << "Viewers won!";
+    }
+
+}
