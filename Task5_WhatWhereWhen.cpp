@@ -46,7 +46,7 @@ int main() {
     for (int i = 0; i < 13; ++i) {
         sectors[i] = true;
     }
-    //path = "W:\\CLionProjects\\Skillbox\\19_Files\\TheGame\\Questions\\" + to_string(position) + ".txt";
+
     cout << "The game has begun!" << endl;
     while (expertsScore < 6 && viewersScore < 6) {
         cout << "Current position is " << position << endl;
