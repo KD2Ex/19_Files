@@ -19,10 +19,6 @@ string readAllText(ifstream &file) {
     return str;
 }
 
-void printFileContent(ifstream &file) {
-
-}
-
 bool answer(ifstream &answer) {
     string rightAnswer;
     string playerAnswer;
