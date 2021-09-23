@@ -10,16 +10,14 @@ int main() {
     cout << "Enter a path to the file\n";
     cin >> path;
     file.open(path);
-    while (!file.eof()) {
-        file.read(buffer, sizeof(buffer) - 1);
-        buffer[19] = 0;
-        if (file.gcount() != 19) {
-            for (int i = file.gcount(); i < 19; ++i) {
-                buffer[i] = 0;
-            }
+    if (file.is_open()) {
+        while (!file.eof()) {
+            file.read(buffer, sizeof(buffer) - 1);
+            buffer[file.gcount()] = 0;
+            cout << buffer;
         }
-        cout << buffer;
-    }
-
-    file.close();
+        file.close();
+    } else {
+        cout << "Invalid path file";
+    }   
 }
