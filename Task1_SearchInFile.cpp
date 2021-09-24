@@ -6,7 +6,7 @@ int main() {
     ifstream words;
     words.open("words.txt");
     if (!words.is_open()) {
-        cout << "Invalid file path" << endl;
+        cout << "Cannot open the file" << endl;
     } else {
         string str;
         cout << "Enter a word to find in text:\n";

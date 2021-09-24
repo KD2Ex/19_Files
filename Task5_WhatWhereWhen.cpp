@@ -4,7 +4,7 @@ using namespace std;
 
 string readAllText(ifstream &file) {
     char buffer[6];
-    string str = "";
+    string str;
     while (!file.eof()) {
         file.read(buffer, sizeof(buffer) - 1);
         buffer[5] = 0;
@@ -25,11 +25,8 @@ bool answer(ifstream &answer) {
     cin.get();
     getline(cin, playerAnswer);
     rightAnswer =  readAllText(answer);
-    if (playerAnswer == rightAnswer) {
-        return true;
-    } else {
-        return false;
-    }
+    answer.close();
+    return (playerAnswer == rightAnswer);
 }
 
 int main() {
@@ -59,7 +56,7 @@ int main() {
             if (position == 0) position = 13;
         }
 
-        while (sectors[position - 1] != true) {
+        while (!sectors[position - 1]) {
             if (++position > 13) {
                 position = 1;
             }
@@ -72,7 +69,10 @@ int main() {
 
         questions.open(questionsPath);
         answers.open(answersPath);
-
+        if (!questions.is_open() || !answers.is_open()) {
+            cout << "Check out file directory with answers and questions and try again." << endl;
+            return 0;
+        }
         cout << readAllText(questions) << endl;
 
         cout << "Enter your answer:\n";
